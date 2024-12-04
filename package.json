@@ -1,0 +1,17 @@
+{
+  "name": "mastering-api-architecture",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "repository": "git@github.com:masakazu1967/mastering-api-architecture.git",
+  "author": "masakazu kobayashi <masakazu1967@yggdrasilroot.info>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^8.1.9"
+  },
+  "workspaces": [
+    "frontend/*",
+    "backend/*",
+    "lib/*"
+  ]
+}

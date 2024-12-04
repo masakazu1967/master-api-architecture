@@ -1,0 +1,4 @@
+{
+  "eslint.format.enable": true,
+  "markdown-preview-enhanced.plantumlJarPath": "/home/vscode/.vscode-server/extensions/jebbs.plantuml-2.18.1/plantuml.jar"
+}
