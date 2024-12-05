@@ -108,4 +108,73 @@ Following these guidelines is crucial for facilitating collaboration and onboard
 - **Onboarding**: Helps new team members get up to speed quickly.
 - **Resource**: Serves as a valuable resource for both new and experienced developers.
 
+## Commit Log Format
+
+We enforce a specific format for commit messages to maintain a clear and consistent commit history. We use [Semantic Commit Messages](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716) for our commit log format.
+
+### Commit Message Structure
+
+A commit message consists of a header, a body, and a footer. The header is mandatory and the body and footer are optional.
+
+#### Header
+
+The header has the following format:
+
+```
+<type>: <subject>
+```
+
+- **type**: The type of change (see below for allowed types)
+- **subject**: A brief summary of the change (max 50 characters)
+
+#### Body
+
+The body provides additional information about the change. It should include the motivation for the change and contrast with the previous behavior.
+
+#### Footer
+
+The footer is used to reference issues or breaking changes.
+
+### Allowed Types
+
+We use the following types for commit messages:
+
+- **fix**: A bug fix
+- **feat**: A new feature
+- **change**: A change to existing functionality
+- **refactor**: A code refactoring
+- **upgrade**: An upgrade to dependencies or tools
+- **revert**: A revert of a previous commit
+- **docs**: Documentation changes
+- **style**: Code style changes (formatting, missing semi-colons, etc.)
+- **perf**: Performance improvements
+- **test**: Adding or updating tests
+- **chore**: Other changes that don't modify src or test files
+
+### Example Commit Messages
+
+```
+fix: resolve issue with user login
+
+feat: add new user registration feature
+
+change: update API endpoint for user data
+
+refactor: improve code structure in user service
+
+upgrade: bump version of TypeScript to 4.3.5
+
+revert: undo changes to user authentication
+
+docs: update README with new instructions
+
+style: format code with Prettier
+
+perf: optimize database queries
+
+test: add unit tests for user service
+
+chore: update dependencies
+```
+
 Thank you for contributing to the Mastering API Architecture project! Your efforts are greatly appreciated.
