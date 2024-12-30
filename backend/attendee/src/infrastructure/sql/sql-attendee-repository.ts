@@ -25,9 +25,9 @@ export class SqlAttendeeRepository implements AttendeeRepository {
    * @param id 出席者ID
    * @returns 出席者のプロミス
    */
-  async getById(id: AttendeeId): Promise<Attendee> {
+  async getById(id: AttendeeId): Promise<Attendee | null> {
     const record = await this.repository.findOne({ where: { id: id.value } });
-    return this.toDomainEntity(record);
+    return record ? this.toDomainEntity(record) : null;
   }
 
   /**
@@ -35,11 +35,11 @@ export class SqlAttendeeRepository implements AttendeeRepository {
    * @param email メールアドレス
    * @returns 出席者のプロミス
    */
-  async getByEmail(email: EmailAddress): Promise<Attendee> {
+  async getByEmail(email: EmailAddress): Promise<Attendee | null> {
     const record = await this.repository.findOne({
       where: { emailAddress: email.value },
     });
-    return this.toDomainEntity(record);
+    return record ? this.toDomainEntity(record) : null;
   }
 
   /**

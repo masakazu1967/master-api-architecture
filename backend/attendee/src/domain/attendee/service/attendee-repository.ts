@@ -12,14 +12,14 @@ export interface AttendeeRepository {
    * @param id 出席者ID
    * @returns 出席者のプロミス
    */
-  getById(id: AttendeeId): Promise<Attendee>;
+  getById(id: AttendeeId): Promise<Attendee | null>;
 
   /**
    * メールアドレスで出席者を取得する
    * @param email メールアドレス
    * @returns 出席者のプロミス
    */
-  getByEmail(email: EmailAddress): Promise<Attendee>;
+  getByEmail(email: EmailAddress): Promise<Attendee | null>;
 
   /**
    * 出席者を保存する
