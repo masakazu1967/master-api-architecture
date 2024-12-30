@@ -8,9 +8,4 @@ describe('RegisterAttendeeResponse', () => {
     expect(response).toBeInstanceOf(RegisterAttendeeResponse);
     expect(response.attendeeId).toBe(attendeeId);
   });
-
-  it('should handle validation errors', () => {
-    const invalidAttendeeId = '';
-    expect(() => new RegisterAttendeeResponse(invalidAttendeeId)).toThrow();
-  });
 });

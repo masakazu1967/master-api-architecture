@@ -18,7 +18,7 @@ describe('Name', () => {
 
     it('should throw a DomainError when the value is empty', () => {
       expect(() => Name.create('')).toThrow(DomainError);
-      expect(() => Name.create('')).toThrow('名前は40文字以下で入力してください。');
+      expect(() => Name.create('')).toThrow('名前は必須です。');
     });
   });
 });

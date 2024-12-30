@@ -24,11 +24,17 @@ export class Name extends PrimitiveValueObject<string> {
    * @throws {DomainError} バリデーションエラーが発生した場合
    */
   public static create(value: string): Name {
-    const schema = z.string().max(Name.MAX_LENGTH);
+    const schema = z
+      .string()
+      .min(1, '名前は必須です。')
+      .max(
+        Name.MAX_LENGTH,
+        `名前は${Name.MAX_LENGTH}文字以下で入力してください。`,
+      );
     const parseResult = schema.safeParse(value);
 
     if (!parseResult.success) {
-      throw new DomainError('名前は40文字以下で入力してください。');
+      throw new DomainError(parseResult.error.message);
     }
 
     return new Name(value);

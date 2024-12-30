@@ -1,4 +1,3 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { ApplicationError } from '../../../src/share/domain/error/application-error';
 import { RegisterAttendeeInteractor } from '../../../src/application/register-attendee/register-attendee-interactor';
 import { RegisterAttendeeRequest } from '../../../src/application/register-attendee/register-attendee-request';
@@ -9,6 +8,7 @@ import { AttendeeExistenceService } from '../../../src/domain/attendee/service/a
 import { Name } from '../../../src/domain/attendee/model/name';
 import { EmailAddress } from '../../../src/domain/attendee/model/email-address';
 import { AttendeeFixture } from '../../fixture/attendee.fixture';
+import { mock } from 'jest-mock-extended';
 
 describe('RegisterAttendeeInteractor', () => {
   let interactor: RegisterAttendeeInteractor;
@@ -17,41 +17,13 @@ describe('RegisterAttendeeInteractor', () => {
   let attendeeExistenceService: AttendeeExistenceService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        RegisterAttendeeInteractor,
-        {
-          provide: 'AttendeeRepository',
-          useValue: {
-            getById: jest.fn(),
-            getByEmail: jest.fn(),
-            save: jest.fn(),
-          },
-        },
-        {
-          provide: 'AttendeeIdGenerator',
-          useValue: {
-            generate: jest.fn(),
-          },
-        },
-        {
-          provide: AttendeeExistenceService,
-          useValue: {
-            exists: jest.fn(),
-          },
-        },
-      ],
-    }).compile();
-
-    interactor = module.get<RegisterAttendeeInteractor>(
-      RegisterAttendeeInteractor,
-    );
-    attendeeRepository = module.get<AttendeeRepository>('AttendeeRepository');
-    attendeeIdGenerator = module.get<AttendeeIdGenerator>(
-      'AttendeeIdGenerator',
-    );
-    attendeeExistenceService = module.get<AttendeeExistenceService>(
-      AttendeeExistenceService,
+    attendeeRepository = mock();
+    attendeeIdGenerator = mock();
+    attendeeExistenceService = mock();
+    interactor = new RegisterAttendeeInteractor(
+      attendeeRepository,
+      attendeeIdGenerator,
+      attendeeExistenceService,
     );
   });
 

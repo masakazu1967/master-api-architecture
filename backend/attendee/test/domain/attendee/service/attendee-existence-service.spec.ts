@@ -1,4 +1,4 @@
-import { Test, TestingModule } from '@nestjs/testing';
+import { mock } from 'jest-mock-extended';
 import { AttendeeExistenceService } from '../../../../src/domain/attendee/service/attendee-existence-service';
 import { AttendeeRepository } from '../../../../src/domain/attendee/service/attendee-repository';
 import { AttendeeFixture } from '../../../fixture/attendee.fixture';
@@ -8,20 +8,8 @@ describe('AttendeeExistenceService', () => {
   let repository: AttendeeRepository;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [
-        AttendeeExistenceService,
-        {
-          provide: 'AttendeeRepository',
-          useValue: {
-            getByEmail: jest.fn(),
-          },
-        },
-      ],
-    }).compile();
-
-    service = module.get<AttendeeExistenceService>(AttendeeExistenceService);
-    repository = module.get<AttendeeRepository>('AttendeeRepository');
+    repository = mock();
+    service = new AttendeeExistenceService(repository);
   });
 
   describe('exists', () => {
