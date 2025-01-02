@@ -1,7 +1,7 @@
 import { PrimitiveValueObject } from '../value-object/primitive-value-object';
 import { Version } from '../version/version';
 
-export class AbstractEntity<ID extends PrimitiveValueObject<number>, PROPS> {
+export class AbstractEntity<ID extends PrimitiveValueObject<string>, PROPS> {
   protected readonly _id: ID;
   protected props: PROPS;
   protected readonly _version?: Version;

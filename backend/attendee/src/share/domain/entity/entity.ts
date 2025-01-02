@@ -6,6 +6,6 @@ interface Props {
 }
 
 export abstract class Entity<
-  ID extends PrimitiveValueObject<number>,
+  ID extends PrimitiveValueObject<string>,
   PROPS extends Props,
 > extends AbstractEntity<ID, PROPS> {}
