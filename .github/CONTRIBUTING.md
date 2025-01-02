@@ -36,7 +36,7 @@ We use Domain-Driven Design (DDD) as our software development methodology. DDD e
 
 We adopt the Onion Architecture for our software architecture. The Onion Architecture emphasizes the separation of concerns and the use of layers to organize the codebase. It follows the dependency rule: code dependencies can only point inwards.
 
-#### Core Principles
+#### Core Principles of Onion Architecture
 
 - **Separation of Concerns**: Organize the codebase into layers.
 - **Dependency Rule**: Code dependencies can only point inwards.
@@ -73,7 +73,7 @@ Each backend service project has a modular structure, with modules divided by AP
 
 Here is an example of the directory structure using ASCII art:
 
-```
+```console
 backend/
   attendee/
     domain/
@@ -120,7 +120,7 @@ A commit message consists of a header, a body, and a footer. The header is manda
 
 The header has the following format:
 
-```
+```console
 <type>: <subject>
 ```
 
@@ -153,7 +153,7 @@ We use the following types for commit messages:
 
 ### Example Commit Messages
 
-```
+```console
 fix: resolve issue with user login
 
 feat: add new user registration feature
