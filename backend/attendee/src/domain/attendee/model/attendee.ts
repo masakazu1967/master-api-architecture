@@ -71,6 +71,14 @@ export class Attendee extends Entity<AttendeeId, AttendeeProps> {
   get emailAddress(): EmailAddress {
     return this.props.emailAddress;
   }
+
+  /**
+   * 出席者の名前を変更する
+   * @param newName 新しい名前
+   */
+  public changeName(newName: Name): void {
+    this.props.name = newName;
+  }
 }
 
 /**
