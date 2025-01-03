@@ -73,7 +73,12 @@
   ],
 
   "postCreateCommand": "sh ./.devcontainer/create-container.sh",
-  "postStartCommand": "sh ./.devcontainer/entrypoint.sh ${containerWorkspaceFolder}"
+  "postStartCommand": "sh ./.devcontainer/entrypoint.sh ${containerWorkspaceFolder}",
+  "tasks": {
+    "test": "yarn workspace attendee test",
+    "build": "yarn workspace attendee install && yarn workspace attendee build",
+    "launch": "yarn workspace attendee start"
+  }
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"
 }
