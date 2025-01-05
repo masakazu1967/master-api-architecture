@@ -50,9 +50,10 @@ export class AttendeeFixture {
     id: AttendeeId,
     name: Name,
     emailAddress: EmailAddress,
+    active: boolean = true,
     version?: Version,
   ): Attendee {
-    const props: AttendeeProps = { name, emailAddress };
+    const props: AttendeeProps = { name, emailAddress, active };
     return Attendee.restore(id, props, version);
   }
 }

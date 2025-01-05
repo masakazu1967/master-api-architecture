@@ -65,6 +65,7 @@ export class SqlAttendeeRepository implements AttendeeRepository {
     const props = {
       name,
       emailAddress,
+      active: record.active,
     };
     return Attendee.restore(id, props, version);
   }
@@ -79,6 +80,7 @@ export class SqlAttendeeRepository implements AttendeeRepository {
     record.id = attendee.id.value;
     record.name = attendee.name.value;
     record.emailAddress = attendee.emailAddress.value;
+    record.active = attendee.active;
     record.version = attendee.version?.value ?? 1;
     return record;
   }

@@ -1,8 +1,8 @@
-import { Attendee } from '../../../../src/domain/attendee/model/attendee';
-import { AttendeeId } from '../../../../src/domain/attendee/model/attendee-id';
-import { Name } from '../../../../src/domain/attendee/model/name';
-import { EmailAddress } from '../../../../src/domain/attendee/model/email-address';
-import { Version } from '../../../../src/share/domain/version/version';
+import { Attendee } from '../../../src/domain/attendee/model/attendee';
+import { AttendeeId } from '../../../src/domain/attendee/model/attendee-id';
+import { Name } from '../../../src/domain/attendee/model/name';
+import { EmailAddress } from '../../../src/domain/attendee/model/email-address';
+import { Version } from '../../../src/share/domain/version/version';
 
 describe('Attendee', () => {
   describe('create', () => {

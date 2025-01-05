@@ -21,7 +21,7 @@ export class Attendee extends Entity<AttendeeId, AttendeeProps> {
    * @returns 出席者エンティティ
    * @throws {DomainError} バリデーションエラーが発生した場合
    */
-  public static create(id: AttendeeId, props: AttendeeProps): Attendee {
+  public static create(id: AttendeeId, props: AttendeeCreateProps): Attendee {
     const schema = z.object({
       name: z.string().max(40),
       emailAddress: z.string().email().max(254),
@@ -32,7 +32,7 @@ export class Attendee extends Entity<AttendeeId, AttendeeProps> {
         name: props.name.value,
         emailAddress: props.emailAddress.value,
       });
-      return new Attendee(id, props);
+      return new Attendee(id, { ...props, active: false });
     } catch (error) {
       if (error instanceof z.ZodError) {
         throw new DomainError('Invalid attendee properties');
@@ -73,11 +73,27 @@ export class Attendee extends Entity<AttendeeId, AttendeeProps> {
   }
 
   /**
+   * 出席者の有効フラグを取得する
+   * @returns 出席者の有効フラグ
+   */
+  get active(): boolean {
+    return this.props.active;
+  }
+
+  /**
    * 出席者の名前を変更する
    * @param newName 新しい名前
    */
   public changeName(newName: Name): void {
     this.props.name = newName;
+  }
+
+  /**
+   * 出席者の有効フラグを変更する
+   * @param active 新しい有効フラグ
+   */
+  public changeActive(active: boolean): void {
+    this.props.active = active;
   }
 }
 
@@ -85,6 +101,15 @@ export class Attendee extends Entity<AttendeeId, AttendeeProps> {
  * 出席者のプロパティインターフェイス
  */
 export interface AttendeeProps {
+  name: Name;
+  emailAddress: EmailAddress;
+  active: boolean;
+}
+
+/**
+ * 出席者の作成プロパティインターフェイス
+ */
+export interface AttendeeCreateProps {
   name: Name;
   emailAddress: EmailAddress;
 }

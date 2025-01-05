@@ -42,6 +42,7 @@ describe('RegisterAttendeeInteractor', () => {
         attendeeId,
         name,
         emailAddress,
+        false,
       );
 
       jest.spyOn(attendeeIdGenerator, 'generate').mockReturnValue(attendeeId);
@@ -54,6 +55,7 @@ describe('RegisterAttendeeInteractor', () => {
       expect(attendeeIdGenerator.generate).toHaveBeenCalled();
       expect(attendeeExistenceService.exists).toHaveBeenCalledWith(attendee);
       expect(attendeeRepository.save).toHaveBeenCalledWith(attendee);
+      expect(attendee.active).toBe(false); // Check that active flag is set to false
     });
 
     it('should return an error if the name is invalid', async () => {
