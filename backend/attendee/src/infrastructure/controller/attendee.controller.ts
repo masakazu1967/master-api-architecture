@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Inject,
+  Delete,
 } from '@nestjs/common';
 import { RegisterAttendeeUsecase } from '../../application/register-attendee/register-attendee-usecase';
 import { RegisterAttendeeRequest } from '../../application/register-attendee/register-attendee-request';
@@ -14,6 +15,9 @@ import { UpdateAttendeeUsecase } from '../../application/update-attendee/update-
 import { UpdateAttendeeRequest } from '../../application/update-attendee/update-attendee-request';
 import { UpdateAttendeeResponse } from '../../application/update-attendee/update-attendee-response';
 import { ApplicationError } from '../../share/domain/error/application-error';
+import { CancelAttendeeUsecase } from '../../application/cancel-attendee/cancel-attendee-usecase';
+import { CancelAttendeeRequest } from '../../application/cancel-attendee/cancel-attendee-request';
+import { CancelAttendeeResponse } from '../../application/cancel-attendee/cancel-attendee-response';
 
 /**
  * 出席者コントローラクラス
@@ -26,6 +30,8 @@ export class AttendeeController {
     private readonly registerAttendeeUsecase: RegisterAttendeeUsecase,
     @Inject('UpdateAttendeeUsecase')
     private readonly updateAttendeeUsecase: UpdateAttendeeUsecase,
+    @Inject('CancelAttendeeUsecase')
+    private readonly cancelAttendeeUsecase: CancelAttendeeUsecase,
   ) {}
 
   /**
@@ -61,6 +67,21 @@ export class AttendeeController {
   ): Promise<UpdateAttendeeResponse> {
     const request = new UpdateAttendeeRequest(id, requestBody.name);
     const response = await this.updateAttendeeUsecase.execute(request);
+    if (response instanceof ApplicationError) {
+      throw new BadRequestException(response.message);
+    }
+    return response;
+  }
+
+  /**
+   * 出席者を解約する
+   * @param id 出席者ID
+   * @returns 出席者解約レスポンス
+   */
+  @Delete(':id')
+  async cancelAttendee(@Param('id') id: string): Promise<CancelAttendeeResponse> {
+    const request = new CancelAttendeeRequest(id);
+    const response = await this.cancelAttendeeUsecase.execute(request);
     if (response instanceof ApplicationError) {
       throw new BadRequestException(response.message);
     }

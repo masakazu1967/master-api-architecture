@@ -22,6 +22,9 @@ export class AttendeeRecord {
   @Column({ name: 'email_address', length: 254, unique: true })
   emailAddress: string;
 
+  @Column({ name: 'active', default: true })
+  active: boolean;
+
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 

@@ -7,6 +7,7 @@ import { RegisterAttendeeInteractor } from '../../application/register-attendee/
 import { UlidAttendeeIdGenerator } from '../ulid/ulid-attendee-id-generator';
 import { AttendeeRecord } from '../sql/entity/attendee-record';
 import { UpdateAttendeeInteractor } from '../../application/update-attendee/update-attendee-interactor';
+import { CancelAttendeeInteractor } from '../../application/cancel-attendee/cancel-attendee-interactor';
 
 /**
  * 出席者モジュールクラス
@@ -31,6 +32,10 @@ import { UpdateAttendeeInteractor } from '../../application/update-attendee/upda
     {
       provide: 'UpdateAttendeeUseCase',
       useClass: UpdateAttendeeInteractor,
+    },
+    {
+      provide: 'CancelAttendeeUseCase',
+      useClass: CancelAttendeeInteractor,
     },
     AttendeeExistenceService,
   ],
